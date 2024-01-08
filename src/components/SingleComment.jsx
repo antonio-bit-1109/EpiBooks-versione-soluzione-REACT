@@ -8,7 +8,8 @@ const SingleComment = (props) => {
             let response = await fetch("https://striveschool-api.herokuapp.com/api/comments/" + asin, {
                 method: "DELETE",
                 headers: {
-                    Authorization: "Bearer inserisci-qui-il-tuo-token",
+                    Authorization:
+                        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTcxY2JhMDBkOGEyMDAwMThhNDhhNDAiLCJpYXQiOjE3MDQ3MjIzMTIsImV4cCI6MTcwNTkzMTkxMn0.o6QM1stCifQGBTxb7WO5estJemL28Q_NjVcVHCLduO0",
                 },
             });
             if (response.ok) {
