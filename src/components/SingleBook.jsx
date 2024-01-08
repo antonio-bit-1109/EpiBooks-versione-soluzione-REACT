@@ -6,11 +6,15 @@ const SingleBook = (props) => {
 
     const [selected, setSelected] = useState(false);
 
+    const handleSelection = () => {
+        setSelected((prevValue) => !prevValue);
+    };
+
     return (
         <>
             <Card
                 onClick={() => {
-                    setSelected(!selected);
+                    handleSelection();
                     TaketheSingleBook(book);
                     isClicked();
                 }}
@@ -26,6 +30,7 @@ const SingleBook = (props) => {
                     <Card.Title className="text-center" style={{ color: "black" }}>
                         {book.title}
                     </Card.Title>
+                    <Card.Text className="text-center text-info">asin: {book.asin}</Card.Text>
                 </Card.Body>
             </Card>
         </>
