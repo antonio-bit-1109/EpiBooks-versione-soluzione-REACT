@@ -15,35 +15,35 @@ const CommentArea = (props) => {
     const [isLoading, setIsLoading] = useState(true);
     const [isError, setIsError] = useState(false);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                let response = await fetch("https://striveschool-api.herokuapp.com/api/comments/" + asin, {
-                    method: "GET",
-                    headers: {
-                        Authorization:
-                            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTcxY2JhMDBkOGEyMDAwMThhNDhhNDAiLCJpYXQiOjE3MDQ3MjIzMTIsImV4cCI6MTcwNTkzMTkxMn0.o6QM1stCifQGBTxb7WO5estJemL28Q_NjVcVHCLduO0",
-                    },
-                });
+    const fetchData = async (value) => {
+        try {
+            let response = await fetch(`https://striveschool-api.herokuapp.com/api/comments/${value}`, {
+                method: "GET",
+                headers: {
+                    Authorization:
+                        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTcxY2JhMDBkOGEyMDAwMThhNDhhNDAiLCJpYXQiOjE3MDQ3MjIzMTIsImV4cCI6MTcwNTkzMTkxMn0.o6QM1stCifQGBTxb7WO5estJemL28Q_NjVcVHCLduO0",
+                },
+            });
 
-                if (response.ok) {
-                    let commentsData = await response.json();
-                    setComments(commentsData);
-                    setIsLoading(false);
-                    setIsError(false);
-                } else {
-                    setIsLoading(false);
-                    setIsError(true);
-                }
-            } catch (error) {
-                console.log(error);
+            if (response.ok) {
+                let commentsData = await response.json();
+                setComments(commentsData);
+                setIsLoading(false);
+                setIsError(false);
+            } else {
                 setIsLoading(false);
                 setIsError(true);
             }
-        };
+        } catch (error) {
+            console.log(error);
+            setIsLoading(false);
+            setIsError(true);
+        }
+    };
 
+    useEffect(() => {
         if (asin) {
-            fetchData();
+            fetchData(asin);
         } else {
             return;
         }
