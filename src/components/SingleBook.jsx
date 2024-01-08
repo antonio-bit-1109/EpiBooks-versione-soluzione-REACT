@@ -9,10 +9,7 @@ const SingleBook = (props) => {
 
     return (
         <>
-            <Card
-                onClick={() => setSelected({ selected: !selected })}
-                style={{ border: selected ? "3px solid red" : "none" }}
-            >
+            <Card onClick={() => setSelected(!selected)} style={{ border: selected ? "3px solid red" : "none" }}>
                 <Card.Img variant="top" src={book.img} />
                 <Card.Body>
                     <Card.Title style={{ color: "black" }}>{book.title}</Card.Title>
