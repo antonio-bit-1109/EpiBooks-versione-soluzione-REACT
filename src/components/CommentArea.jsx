@@ -7,6 +7,7 @@ import { Alert } from "react-bootstrap";
 
 const CommentArea = (props) => {
     const { asin, nothingCliked } = props;
+    console.log("ASIN IN COMMENT AREA ", asin);
 
     const [comments, setComments] = useState([]);
     console.log(comments);

@@ -1,12 +1,30 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 
-const AddComment = ({ asin }) => {
+const AddComment = (props) => {
+    const { asin } = props;
+    console.log("ASIN IN ADDCOMMENT", asin);
+
     const [comment, setComment] = useState({
         comment: "",
         rate: 1,
         elementId: asin,
     });
+
+    /*     useEffect(() => {
+        if (asin) {
+            setComment(...comment, { elementId: asin });
+        }
+    }, [asin]); */
+
+    useEffect(() => {
+        if (asin) {
+            setComment((prevValue) => ({
+                ...prevValue,
+                elementId: asin,
+            }));
+        }
+    }, [asin]);
 
     const sendComment = async (e) => {
         e.preventDefault();
@@ -22,11 +40,11 @@ const AddComment = ({ asin }) => {
             });
             if (response.ok) {
                 alert("Recensione inviata!");
-                setComment({
+                /* setComment({
                     comment: "",
                     rate: 1,
                     elementId: asin,
-                });
+                }); */
             } else {
                 throw new Error("Qualcosa è andato storto");
             }
