@@ -40,11 +40,6 @@ const AddComment = (props) => {
             });
             if (response.ok) {
                 alert("Recensione inviata!");
-                /* setComment({
-                    comment: "",
-                    rate: 1,
-                    elementId: asin,
-                }); */
             } else {
                 throw new Error("Qualcosa è andato storto");
             }
