@@ -1,14 +1,21 @@
 import React, { useState } from "react";
 import SingleBook from "./SingleBook";
-import { Col, Form, Row } from "react-bootstrap";
+import { Col, Container, Form, Row } from "react-bootstrap";
+import CommentArea from "./CommentArea";
 
 const BookList = (props) => {
     const { books } = props;
 
     const [searchQuery, setSearchQuery] = useState("");
+    const [copyOfbook, setCopyOfBook] = useState([]);
+    console.log("copyOfbook", copyOfbook);
+
+    const TaketheSingleBook = (value) => {
+        setCopyOfBook(value);
+    };
 
     return (
-        <>
+        <Container>
             <Row className="justify-content-center mt-5">
                 <Col xs={12} md={4} className="text-center">
                     <Form.Group>
@@ -21,17 +28,24 @@ const BookList = (props) => {
                     </Form.Group>
                 </Col>
             </Row>
-            <Row className="g-2 mt-3">
-                {books
-                    .filter((b) => b.title.toLowerCase().includes(searchQuery))
-                    .slice(0, 6)
-                    .map((b) => (
-                        <Col xs={12} md={4} key={b.asin}>
-                            <SingleBook book={b} />
-                        </Col>
-                    ))}
-            </Row>
-        </>
+            <div className="d-flex">
+                <Row>
+                    {books
+                        .filter((book) => book.title.toLowerCase().includes(searchQuery))
+                        .slice(0, 6)
+                        .map((book) => (
+                            <Col xs={12} md={7} xxl={7} key={book.asin}>
+                                <SingleBook book={book} TaketheSingleBook={TaketheSingleBook} />
+                            </Col>
+                        ))}
+                </Row>
+                <Col className="order-last" xs={12} md={5} xxl={5}>
+                    <div className="mt-5">
+                        <CommentArea asin={copyOfbook.asin} />
+                    </div>
+                </Col>
+            </div>
+        </Container>
     );
 };
 
