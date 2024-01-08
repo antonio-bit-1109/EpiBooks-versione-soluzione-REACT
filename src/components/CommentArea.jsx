@@ -3,9 +3,14 @@ import CommentList from "./CommentList";
 import AddComment from "./AddComment";
 import Loading from "./Loading";
 import Error from "./Error";
+import { Alert } from "react-bootstrap";
 
-const CommentArea = ({ asin }) => {
+const CommentArea = (props) => {
+    const { asin, nothingCliked } = props;
+
     const [comments, setComments] = useState([]);
+    console.log(comments);
+
     const [isLoading, setIsLoading] = useState(true);
     const [isError, setIsError] = useState(false);
 
@@ -35,15 +40,20 @@ const CommentArea = ({ asin }) => {
             }
         };
 
-        fetchData();
+        if (asin) {
+            fetchData();
+        } else {
+            return;
+        }
     }, [asin]);
 
     return (
         <div className="text-center">
-            {isLoading && <Loading />}
+            {/*  {isLoading && <Loading />} */}
             {isError && <Error />}
+            {nothingCliked && <Alert variant="warning"> Nessun commento caricato.</Alert>}
             <AddComment asin={asin} />
-            <CommentList commentsToShow={comments} />
+            {!nothingCliked && <CommentList commentsToShow={comments} />}
         </div>
     );
 };

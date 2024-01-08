@@ -10,6 +10,12 @@ const BookList = (props) => {
     const [copyOfbook, setCopyOfBook] = useState([]);
     console.log("copyOfbook", copyOfbook);
 
+    const [nothingCliked, setNothingClicked] = useState(true);
+
+    const isClicked = () => {
+        setNothingClicked((prevState) => !prevState);
+    };
+
     const TaketheSingleBook = (value) => {
         setCopyOfBook(value);
     };
@@ -35,13 +41,13 @@ const BookList = (props) => {
                         .slice(0, 6)
                         .map((book) => (
                             <Col xs={12} md={7} xxl={7} key={book.asin}>
-                                <SingleBook book={book} TaketheSingleBook={TaketheSingleBook} />
+                                <SingleBook book={book} TaketheSingleBook={TaketheSingleBook} isClicked={isClicked} />
                             </Col>
                         ))}
                 </Row>
                 <Col className="order-last" xs={12} md={5} xxl={5}>
-                    <div className="mt-5">
-                        <CommentArea asin={copyOfbook.asin} />
+                    <div className="sticky-top mt-5">
+                        <CommentArea asin={copyOfbook.asin} nothingCliked={nothingCliked} />
                     </div>
                 </Col>
             </div>
