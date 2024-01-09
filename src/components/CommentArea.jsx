@@ -50,7 +50,7 @@ const CommentArea = (props) => {
     }, [asin]);
 
     return (
-        <div className="text-center">
+        <div className="text-center mt-5">
             {/*  {isLoading && <Loading />} */}
             {isError && <Error />}
             {nothingCliked && <Alert variant="warning"> Nessun commento caricato.</Alert>}

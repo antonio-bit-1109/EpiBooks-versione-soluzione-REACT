@@ -46,7 +46,7 @@ const BookList = (props) => {
                         ))}
                 </Row>
                 <Col className="order-last" xs={12} md={5} xxl={5}>
-                    <div className="sticky-top mt-5">
+                    <div className="sticky-top">
                         <CommentArea asin={copyOfbook.asin} nothingCliked={nothingCliked} />
                     </div>
                 </Col>
