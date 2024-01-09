@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Card } from "react-bootstrap";
 
 const SingleBook = (props) => {
-    const { book, TaketheSingleBook, isClicked } = props;
+    const { book, TaketheSingleBook, isClicked, copyOfbook } = props;
 
     const [selected, setSelected] = useState(false);
 
@@ -18,7 +18,7 @@ const SingleBook = (props) => {
                     TaketheSingleBook(book);
                     isClicked();
                 }}
-                style={{ border: selected ? "3px solid red" : "none" }}
+                style={{ border: copyOfbook.asin === book.asin ? "3px solid red" : "none" }}
             >
                 <Card.Img
                     variant="top"

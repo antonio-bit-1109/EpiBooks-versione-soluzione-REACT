@@ -41,7 +41,12 @@ const BookList = (props) => {
                         .slice(0, 6)
                         .map((book) => (
                             <Col xs={12} md={7} xxl={7} key={book.asin}>
-                                <SingleBook book={book} TaketheSingleBook={TaketheSingleBook} isClicked={isClicked} />
+                                <SingleBook
+                                    book={book}
+                                    TaketheSingleBook={TaketheSingleBook}
+                                    isClicked={isClicked}
+                                    copyOfbook={copyOfbook}
+                                />
                             </Col>
                         ))}
                 </Row>

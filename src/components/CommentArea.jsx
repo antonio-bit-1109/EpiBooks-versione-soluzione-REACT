@@ -53,8 +53,8 @@ const CommentArea = (props) => {
         <div className="text-center mt-5">
             {/*  {isLoading && <Loading />} */}
             {isError && <Error />}
-            {nothingCliked && <Alert variant="warning"> Nessun commento caricato.</Alert>}
-            <AddComment asin={asin} />
+            {nothingCliked && <Alert variant="warning"> Nessun commento caricato. Clicca un libro.</Alert>}
+            {<AddComment asin={asin} />}
             {!nothingCliked && <CommentList commentsToShow={comments} />}
         </div>
     );
